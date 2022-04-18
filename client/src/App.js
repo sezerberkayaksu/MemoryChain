@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import AddMemoryForm from "./components/AddMemoryForm";
+import MemoryList from "./components/MemoryList";
+import { Heading } from "@chakra-ui/react";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
-import MemoryList from "./components/MemoryList";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -19,13 +20,13 @@ class App extends Component {
       const deployedNetwork = SimpleStorageContract.networks[networkId];
       const instance = new web3.eth.Contract(
         SimpleStorageContract.abi,
-        deployedNetwork && deployedNetwork.address,
+        deployedNetwork && deployedNetwork.address
       );
 
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
+      this.setState({ web3, accounts, contract: instance }, this.getMemories);
     } catch (error) {
       alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
+        `Failed to load web3, accounts, or contract. Check console for details.`
       );
       console.error(error);
     }
@@ -43,8 +44,13 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <AddMemoryForm contract={this.state.contract} getMemories={this.getMemories} />
-        <MemoryList memoryList={this.state.memoryList || []}  />
+        <Heading margin={5}>MemoryChain</Heading>
+        <AddMemoryForm
+          accounts={this.state.accounts}
+          contract={this.state.contract}
+          getMemories={this.getMemories}
+        />
+        <MemoryList memoryList={this.state.memoryList || []} />
       </div>
     );
   }

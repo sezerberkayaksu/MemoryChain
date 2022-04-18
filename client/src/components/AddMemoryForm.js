@@ -8,44 +8,37 @@ import {
   Container,
   Box,
 } from "@chakra-ui/react";
-import { Field, Form,Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 
-const AddMemoryForm = ({contract, getMemories}) => {
-  
-  const handleSubmit = async(values,actions) => {
+const AddMemoryForm = ({ accounts, contract, getMemories }) => {
+  const handleSubmit = async (values, actions) => {
     try {
-      const response = await contract.methods.addMemory(values.memory).call();
-      actions.setSubmitting(false)
+      const response = await contract.methods
+        .addMemory(values.memory)
+        .send({ from: accounts[0] });
+      actions.setSubmitting(false);
       getMemories();
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <Container maxW="md">
-      <Formik
-        initialValues={{ memory: "" }}
-        onSubmit={handleSubmit}
-      >
-        {(props)=>(
+      <Formik initialValues={{ memory: "" }} onSubmit={handleSubmit}>
+        {(props) => (
           <Form>
             <Field name="memory">
               {({ field, form }) => (
                 <FormControl isRequired>
-                  <FormLabel htmlFor="memory">Memory</FormLabel>
-                  <Input id="memory" {...field}/>
-                  <FormHelperText>
+                  <Input id="memory" {...field} />
+                  <FormHelperText float={"left"}>
                     Write the memory that you wanna share on chain.
                   </FormHelperText>
                 </FormControl>
               )}
             </Field>
-            <Box
-              w="100%"
-              display="flex"
-              justifyContent="flex-end"
-            >
+            <Box w="100%" display="flex" justifyContent="flex-end">
               <Button
                 _hover={{ boxShadow: "md" }}
                 _active={{ boxShadow: "lg" }}
@@ -61,7 +54,6 @@ const AddMemoryForm = ({contract, getMemories}) => {
             </Box>
           </Form>
         )}
-       
       </Formik>
     </Container>
   );

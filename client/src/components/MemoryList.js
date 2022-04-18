@@ -1,20 +1,28 @@
 import React from "react";
-import { Container, UnorderedList, ListItem, List } from "@chakra-ui/react";
+import { Container, ListItem, List, Tag, Divider } from "@chakra-ui/react";
 
 const MemoryList = ({ memoryList }) => {
-  console.log("DENEME",memoryList);
+  console.log("DENEME", memoryList);
   return (
-    <Container>
-      <List>
-        <UnorderedList>
-          {memoryList.map((_memory)=>{
-            return(
-              <ListItem>Lorem ipsum dolor sit amet</ListItem>
-            )
-          })}
-        </UnorderedList>
+    <Container marginTop={5} maxW="md">
+      <Divider />
+      <List paddingTop={5}>
+        {memoryList.map((_memory) => {
+          return (
+            <ListItem marginBottom={2}>
+              <Tag
+                _hover={{ backgroundColor: "teal", color: "white" }}
+                transition=".3s"
+                p={2}
+                w={"md"}
+                cursor="pointer"
+              >
+                {_memory}
+              </Tag>
+            </ListItem>
+          );
+        })}
       </List>
-      
     </Container>
   );
 };
