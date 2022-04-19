@@ -2,14 +2,13 @@ import React from "react";
 import { Container, ListItem, List, Tag, Divider } from "@chakra-ui/react";
 
 const MemoryList = ({ memoryList }) => {
-  console.log("DENEME", memoryList);
   return (
     <Container marginTop={5} maxW="md">
       <Divider />
       <List paddingTop={5}>
-        {memoryList.map((_memory) => {
+        {memoryList.map((_memory, index) => {
           return (
-            <ListItem marginBottom={2}>
+            <ListItem key={`${index}_${_memory}`} marginBottom={2}>
               <Tag
                 _hover={{ backgroundColor: "teal", color: "white" }}
                 transition=".3s"

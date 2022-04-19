@@ -9,19 +9,11 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 
-const AddMemoryForm = ({ accounts, contract, getMemories }) => {
-  const handleSubmit = async (values, actions) => {
-    try {
-      await contract.methods
-        .addMemory(values.memory)
-        .send({ from: accounts[0] });
-      actions.setSubmitting(false);
-      getMemories();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const SignUp = () => {
 
+  const handleSubmit = async (values, actions) => {
+    actions.setSubmitting(false);
+  };
   return (
     <Container maxW="md">
       <Formik initialValues={{ memory: "" }} onSubmit={handleSubmit}>
@@ -56,6 +48,6 @@ const AddMemoryForm = ({ accounts, contract, getMemories }) => {
       </Formik>
     </Container>
   );
-};
-
-export default AddMemoryForm;
+  }
+  
+export default SignUp;

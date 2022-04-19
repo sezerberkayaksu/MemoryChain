@@ -2,7 +2,7 @@
 pragma experimental ABIEncoderV2;
 pragma solidity >=0.4.21 <8.10.0;
 
-contract SimpleStorage {
+contract MemoryStorage {
   string[] storedData;
 
   function addMemory(string memory x) public {
