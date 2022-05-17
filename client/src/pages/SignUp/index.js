@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   FormControl,
   FormHelperText,
@@ -50,4 +51,7 @@ const SignUp = () => {
   );
   }
   
+SignUp.PropTypes = {
+  isSubmitting: PropTypes.any
+}
 export default SignUp;

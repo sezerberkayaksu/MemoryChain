@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, ListItem, List, Tag, Divider } from "@chakra-ui/react";
+import PropTypes from 'prop-types';
 
 const MemoryList = ({ memoryList }) => {
   return (
@@ -25,5 +26,9 @@ const MemoryList = ({ memoryList }) => {
     </Container>
   );
 };
+
+MemoryList.PropTypes = {
+  memoryList: PropTypes.array
+}
 
 export default MemoryList;

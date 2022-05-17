@@ -8,7 +8,8 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
-
+import PropTypes from "prop-types";
+ 
 const AddMemoryForm = ({ accounts, contract, getMemories }) => {
   const handleSubmit = async (values, actions) => {
     try {
@@ -57,5 +58,12 @@ const AddMemoryForm = ({ accounts, contract, getMemories }) => {
     </Container>
   );
 };
+
+AddMemoryForm.propTypes={
+  accounts:PropTypes.object,
+  contract: PropTypes.object,
+  getMemories: PropTypes.func,
+  isSubmitting: PropTypes.any,
+}
 
 export default AddMemoryForm;
