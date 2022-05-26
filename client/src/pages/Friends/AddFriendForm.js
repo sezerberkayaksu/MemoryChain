@@ -1,20 +1,24 @@
 import React from "react";
 import {
   FormControl,
-  FormHelperText,
   Input,
   Button,
   Container,
   Box,
+  Stack,
+  FormLabel,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
+import { useTranslation } from 'react-i18next';
  
-const AddMemoryForm = ({ accounts, contract, getMemories }) => {
+const AddFriendForm = ({ accounts, contract, getMemories }) => {
+  const { t } = useTranslation();
+
   const handleSubmit = async (values, actions) => {
     try {
       await contract.methods
-        .addMemory(values.memory)
+        .addFriend(values.memory)
         .send({ from: accounts[0] });
       actions.setSubmitting(false);
       getMemories();
@@ -28,28 +32,28 @@ const AddMemoryForm = ({ accounts, contract, getMemories }) => {
       <Formik initialValues={{ memory: "" }} onSubmit={handleSubmit}>
         {(props) => (
           <Form>
-            <Field name="memory">
-              {({ field }) => (
-                <FormControl isRequired>
-                  <Input id="memory" {...field} />
-                  <FormHelperText float={"left"}>
-                    Write the memory that you wanna share on chain.
-                  </FormHelperText>
-                </FormControl>
-              )}
-            </Field>
+            <Stack>
+              <Field name="friend">
+                {({ field }) => (
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="friend">{t("addFriend.form.field.friend")}</FormLabel>
+                    <Input id="friend" {...field} />
+                  </FormControl>
+                )}
+              </Field>
+            </Stack>
             <Box w="100%" display="flex" justifyContent="flex-end">
               <Button
                 _hover={{ boxShadow: "md" }}
                 _active={{ boxShadow: "lg" }}
-                colorScheme="teal"
+                colorScheme="blue"
                 marginTop={4}
                 loadingText={"Sharing"}
                 isLoading={props.isSubmitting}
                 justifyContent="flex-start"
                 type="submit"
               >
-                Share Memory
+                {t("addFriend.form.submit")}
               </Button>
             </Box>
           </Form>
@@ -59,11 +63,11 @@ const AddMemoryForm = ({ accounts, contract, getMemories }) => {
   );
 };
 
-AddMemoryForm.propTypes={
-  accounts:PropTypes.object,
-  contract: PropTypes.object,
-  getMemories: PropTypes.func,
-  isSubmitting: PropTypes.any,
+AddFriendForm.propTypes={
+  accounts:propTypes.array,
+  contract: propTypes.object,
+  getMemories: propTypes.func,
+  isSubmitting: propTypes.any,
 }
 
-export default AddMemoryForm;
+export default AddFriendForm;

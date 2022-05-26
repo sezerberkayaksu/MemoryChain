@@ -1,47 +1,74 @@
-import React, { Component } from "react";
-import AddMemoryForm from "./components/AddMemoryForm";
-import MemoryList from "./components/MemoryList";
-import { Heading } from "@chakra-ui/react";
-import withWeb3Context from "./components/Web3Context";
+import React from "react";
+import withWeb3Context from "./components/HOC/Web3Context";
 import "./App.css";
-import Error from "./components/Error";
-import PropTypes from 'prop-types';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {Error, Navbar} from "./components";
+import propTypes from "prop-types";
+import { MemoryList, AddMemoryForm, Welcome, FriendList, AddFriendForm } from "./pages"; 
 
-
-class App extends Component {
-  
-  render() {
-    if(this.props?.error){
-      return(
-        <Error message={this.props.error} />
-      )
+const App = ({ memoryList, getMemories, accounts, contract, error }) => {
+    if (error) {
+      return <Error message={error} />;
     }
+    
     return (
-        <div className="App">
-          <Heading margin={5}>MemoryChain</Heading>
-          {!this.props.web3 ? <div>Loading Web3, accounts, and contract...</div> :
-            <>
+      <div className="app">
+      <BrowserRouter>
+        <Navbar/>
+        <Routes>
+          <Route
+            path="/"
+            element={<Welcome />}
+          />
+          <Route
+            path="memory"
+            element={<MemoryList memoryList={memoryList || []} getMemories={getMemories}/>}
+          />
+          <Route
+            path="/memory/add"
+            element={
               <AddMemoryForm
-                accounts={this.props.accounts}
-                contract={this.props.contract}
-                getMemories={this.props.getMemories}
+                accounts={accounts}
+                contract={contract}
+                getMemories={getMemories}
               />
-              <MemoryList memoryList={this.props.memoryList || []} />
-            </>
-          }
-         
-        </div>
+            }
+          />
+          <Route
+            path="/friends"
+            element={
+              <FriendList
+                memoryList={memoryList || []} getMemories={getMemories}
+              />
+            }
+          />
+          <Route
+            path="/friends/add"
+            element={
+              <AddFriendForm
+                accounts={accounts}
+                contract={contract}
+                getMemories={getMemories}
+              />
+            }
+          />
+          <Route
+            path="*"
+            element={<Navigate to="/"/>}
+          />
+        </Routes>
+      </BrowserRouter>
+      </div>
     );
-  }
 }
 
-App.propTypes={
-  web3: PropTypes.object,
-  accounts:PropTypes.object,
-  contract: PropTypes.object,
-  getMemories: PropTypes.func,
-  memoryList: PropTypes.array,
-  error: PropTypes.string,
-}
+App.propTypes = {
+  web3: propTypes.object,
+  accounts: propTypes.array,
+  contract: propTypes.object,
+  getMemories: propTypes.func,
+  memoryList: propTypes.array,
+  error: propTypes.string,
+};
 
 export default withWeb3Context(App);

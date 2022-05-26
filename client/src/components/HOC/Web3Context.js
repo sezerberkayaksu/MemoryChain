@@ -1,8 +1,8 @@
 import React, {useEffect} from  "react";
-import useSetState from "./Hooks/useSetState";
-import MemoryStorageContract from "../contracts/MemoryStorage.json";
-import getWeb3 from "../getWeb3";
-import PropTypes from 'prop-types';
+import useSetState from "../Hooks/useSetState";
+import MemoryStorageContract from "../../contracts/MemoryStorage.json";
+import getWeb3 from "../../getWeb3";
+import propTypes from 'prop-types';
 
 const Web3Context = React.createContext(null);
 
@@ -70,7 +70,7 @@ export const withWeb3Context = (WrappedComponent) => {
 };
 
 
-Web3Provider.PropTypes = {
-  children: PropTypes.any
+Web3Provider.propTypes = {
+  children: propTypes.any
 }
 export default withWeb3Context;

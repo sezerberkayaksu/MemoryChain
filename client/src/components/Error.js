@@ -1,12 +1,12 @@
 import { Center } from "@chakra-ui/react";
 import React from "react";
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 const Error = ({ message }) => {
   return <Center h="100px">{message}</Center>;
 };
 
-Error.PropTypes = {
-  message: PropTypes.string
+Error.propTypes = {
+  message: propTypes.string
 }
 export default Error;
