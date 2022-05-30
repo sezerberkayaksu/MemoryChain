@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Flex,
@@ -10,10 +10,10 @@ import {
   useColorModeValue,
   Stack,
   Link as ChakraLink,
-  Heading,
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, AddIcon } from '@chakra-ui/icons';
-import { useTranslation } from 'react-i18next';
+  Heading
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const ROUTES = {
@@ -28,8 +28,9 @@ const ROUTES = {
 };
 
 const Links = ({t, currentPath}) => {
-  const activeBackground = useColorModeValue('blue.300', 'blue.700');
-  return (Object.values(ROUTES).map((link) => (
+  const activeBackground = useColorModeValue("blue.300", "blue.700");
+  return (Object.values(ROUTES).map((link) => {
+return (
     <React.Fragment key={link.i18Key}>
       <ChakraLink
         px={[2,2,5]}
@@ -42,14 +43,15 @@ const Links = ({t, currentPath}) => {
         as={Link}
         to={link.url}
         _hover={{
-          textDecoration: 'none',
+          textDecoration: "none",
           color: "white",
-          bg: activeBackground,
+          bg: activeBackground
       }}>
         {t(link.i18Key)}
       </ChakraLink>
     </React.Fragment>
-  )));
+  );
+}));
 };
 
 const NavBar = () => {
@@ -60,18 +62,18 @@ const NavBar = () => {
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} marginBottom="15px">
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4} marginBottom="15px">
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
-            size={'md'}
+            size={"md"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
+            aria-label={"Open Menu"}
+            display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack
-            as={'nav'}
-            display={{ base: 'none', md: 'flex' }}
+            as={"nav"}
+            display={{ base: "none", md: "flex" }}
             >
             <Flex w={"content"} marginRight={"15px"} as={Link} to={"/"}>
               <Heading color={"blue.300"} size="md">
@@ -83,32 +85,32 @@ const NavBar = () => {
             </Flex>
             <Links t={t} currentPath={currentPath} />
           </HStack>
-          <Flex alignItems={'center'}>
+          <Flex alignItems={"center"}>
             <Button
-              variant={'solid'}
-              colorScheme={'blue'}
-              size={'sm'}
+              variant={"solid"}
+              colorScheme={"blue"}
+              size={"sm"}
               mr={4}
               leftIcon={<AddIcon />}
-              onClick={()=>{navigate("/memory/add")}}
+              onClick={()=>{navigate("/memory/add");}}
             >
               {t("menu.addMemory")}
             </Button>
             <Avatar
-              rounded={'full'}
-              variant={'link'}
-              cursor={'pointer'}
+              rounded={"full"}
+              variant={"link"}
+              cursor={"pointer"}
               minW={0}
-              size={'sm'}
+              size={"sm"}
               src={
-                'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
               }/>
           </Flex>
         </Flex>
 
         {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
+          <Box pb={4} display={{ md: "none" }}>
+            <Stack as={"nav"} spacing={4}>
             <Flex as={Link} to={"/"}>
               <Heading color={"blue.300"} size="md">
                 Memory
@@ -124,6 +126,6 @@ const NavBar = () => {
       </Box>
     </>
   );
-}
+};
 
 export default NavBar;

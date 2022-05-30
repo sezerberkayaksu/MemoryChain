@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/eslint-parser": "^7.18.2",
     "@chakra-ui/button": "^1.5.10",
     "@chakra-ui/icons": "^2.0.1",
     "formik": "^2.2.9",
@@ -22,7 +23,136 @@
     "lint": "eslint ./src --fix"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react"
+    ],
+    "settings": {
+      "react": {
+        "version": "16.8.1"
+      }
+    },
+    "rules": {
+      "strict": [
+        "warn",
+        "never"
+      ],
+      "template-curly-spacing": [
+        "warn",
+        "never"
+      ],
+      "curly": [
+        "warn",
+        "all"
+      ],
+      "brace-style": [
+        "warn",
+        "1tbs",
+        {
+          "allowSingleLine": true
+        }
+      ],
+      "no-undef-init": "warn",
+      "quotes": [
+        "warn",
+        "double"
+      ],
+      "semi": [
+        "warn",
+        "always"
+      ],
+      "no-multi-spaces": "warn",
+      "eqeqeq": [
+        "warn",
+        "allow-null"
+      ],
+      "no-console": [
+        "warn",
+        {
+          "allow": [
+            "warn",
+            "error"
+          ]
+        }
+      ],
+      "react/prop-types": [
+        "warn",
+        {
+          "skipUndeclared": true
+        }
+      ],
+      "eol-last": [
+        "warn",
+        "always"
+      ],
+      "no-unused-vars": "warn",
+      "radix": "warn",
+      "prefer-template": "warn",
+      "no-confusing-arrow": [
+        "warn"
+      ],
+      "arrow-body-style": [
+        "warn",
+        "always"
+      ],
+      "array-callback-return": [
+        "warn",
+        {
+          "allowImplicit": true
+        }
+      ],
+      "no-return-assign": [
+        "warn",
+        "except-parens"
+      ],
+      "class-methods-use-this": [
+        "warn",
+        {
+          "exceptMethods": [
+            "render",
+            "getInitialState",
+            "getDefaultProps",
+            "getChildContext",
+            "componentWillMount",
+            "componentDidMount",
+            "componentWillReceiveProps",
+            "shouldComponentUpdate",
+            "componentWillUpdate",
+            "componentDidUpdate",
+            "componentWillUnmount"
+          ]
+        }
+      ],
+      "no-trailing-spaces": "off",
+      "no-eq-null": "off",
+      "no-prototype-builtins": "off",
+      "key-spacing": [
+        "warn",
+        {
+          "beforeColon": false,
+          "afterColon": true
+        }
+      ],
+      "comma-dangle": [
+        "warn",
+        "never"
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -38,6 +168,7 @@
   },
   "devDependencies": {
     "eslint": "^6.1.0",
-    "eslint-plugin-react": "^7.29.4"
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0"
   }
 }

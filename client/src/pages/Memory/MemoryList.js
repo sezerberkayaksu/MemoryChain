@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, ListItem, List, Tag, Divider, ListIcon, Flex, Center, Stack, Text } from "@chakra-ui/react";
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 import { LinkIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom"; 
@@ -10,11 +10,11 @@ const MemoryList = ({ memoryList, getMemories }) => {
   const {t} = useTranslation();
 
   useEffect(()=>{
-    if(memoryList.length === 0  && loading){
+    if(memoryList.length === 0 && loading){
       getMemories();
       setLoading(false);
     }
-  },[getMemories, memoryList])
+  },[getMemories, memoryList]);
 
   const renderContent = () => {
    if(memoryList.length === 0 && !loading){
@@ -25,14 +25,14 @@ const MemoryList = ({ memoryList, getMemories }) => {
           <Text
               as={Link}
               to="/memory/add"
-              colorScheme={'blue'}
+              colorScheme={"blue"}
               color="white"
-              bg={'blue.400'}
-              rounded={'full'}
+              bg={"blue.400"}
+              rounded={"full"}
               textAlign="center"
               padding={2}
               _hover={{
-                bg: 'blue.500',
+                bg: "blue.500"
               }}>
               {t("memoryList.error.addMemory")}
             </Text>
@@ -61,8 +61,8 @@ const MemoryList = ({ memoryList, getMemories }) => {
         </ListItem>
       );
     })
-   )
-  }
+   );
+  };
 
   return (
     <Container maxW="lg">
@@ -74,7 +74,8 @@ const MemoryList = ({ memoryList, getMemories }) => {
 };
 
 MemoryList.propTypes = {
-  memoryList: propTypes.array
-}
+  memoryList: propTypes.array,
+  getMemories: propTypes.any
+};
 
 export default MemoryList;

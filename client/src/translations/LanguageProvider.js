@@ -6,18 +6,18 @@ import translationEn from "./tr.json";
 
 const LanguageProvider = ({children}) => {
   i18n.use(initReactI18next).init({
-    resources:{
+    resources: {
       tr: { translation: translationTr },
       en: { translation: translationEn }
     },
     lang: "tr",
     fallbackLng: "en",
-    interpolation : { escapeValue: false }
-  })
+    interpolation: { escapeValue: false }
+  });
 
   return <Suspense fallback="Loading...">
      { children }
-  </Suspense>
-}
+  </Suspense>;
+};
 
 export default LanguageProvider;

@@ -60,7 +60,7 @@ const App = ({ memoryList, getMemories, accounts, contract, error }) => {
       </BrowserRouter>
       </div>
     );
-}
+};
 
 App.propTypes = {
   web3: propTypes.object,
@@ -68,7 +68,7 @@ App.propTypes = {
   contract: propTypes.object,
   getMemories: propTypes.func,
   memoryList: propTypes.array,
-  error: propTypes.string,
+  error: propTypes.string
 };
 
 export default withWeb3Context(App);

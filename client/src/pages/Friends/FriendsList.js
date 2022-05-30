@@ -15,7 +15,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-  Button,
+  Button
 } from "@chakra-ui/react";
 import propTypes from "prop-types";
 import { LinkIcon } from "@chakra-ui/icons";
@@ -97,6 +97,7 @@ const FriendList = ({ memoryList, getMemories }) => {
 
 FriendList.propTypes = {
   memoryList: propTypes.array,
+  getMemories: propTypes.any
 };
 
 export default FriendList;

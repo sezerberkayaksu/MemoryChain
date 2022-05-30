@@ -1,14 +1,14 @@
-import React, {useEffect} from  "react";
+import React, {useEffect} from "react";
 import useSetState from "../Hooks/useSetState";
 import MemoryStorageContract from "../../contracts/MemoryStorage.json";
 import getWeb3 from "../../getWeb3";
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 const Web3Context = React.createContext(null);
 
 const Web3Provider = (props) =>{
   const [ state, setState ] = useSetState({
-    memoryList: [], web3: null, accounts: null, contract: null, error:null
+    memoryList: [], web3: null, accounts: null, contract: null, error: null
   });
 
   const getMemories = async () => {
@@ -34,16 +34,16 @@ const Web3Provider = (props) =>{
           MemoryStorageContract.abi,
           deployedNetwork && deployedNetwork.address
         );
-        const hasUser = await contract.methods.hasUser(accounts[0]).call()
+        const hasUser = await contract.methods.hasUser(accounts[0]).call();
         if(!hasUser){
           contract.methods.setUser(accounts[0]).call();
         }
         setState({ web3, accounts, contract });
         
       } catch (error) {
-        setState({error: "Failed to load web3, accounts, or contract. Check console for details."})
+        setState({error: "Failed to load web3, accounts, or contract. Check console for details."});
       }
-    }
+    };
     fetchData();
   },[setState]);
 
@@ -56,8 +56,8 @@ const Web3Provider = (props) =>{
     >
       {props.children}
     </Web3Context.Provider>
-  )
-}
+  );
+};
 
 export const withWeb3Context = (WrappedComponent) => {
   return function Web3Component(props) {
@@ -76,5 +76,5 @@ export const withWeb3Context = (WrappedComponent) => {
 
 Web3Provider.propTypes = {
   children: propTypes.any
-}
+};
 export default withWeb3Context;

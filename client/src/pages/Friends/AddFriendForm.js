@@ -6,12 +6,12 @@ import {
   Container,
   Box,
   Stack,
-  FormLabel,
+  FormLabel
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import propTypes from "prop-types";
-import { useTranslation } from 'react-i18next';
- 
+import { useTranslation } from "react-i18next";
+
 const AddFriendForm = ({ accounts, contract, getMemories }) => {
   const { t } = useTranslation();
 
@@ -23,51 +23,57 @@ const AddFriendForm = ({ accounts, contract, getMemories }) => {
       actions.setSubmitting(false);
       getMemories();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   return (
     <Container maxW="md">
       <Formik initialValues={{ memory: "" }} onSubmit={handleSubmit}>
-        {(props) => (
-          <Form>
-            <Stack>
-              <Field name="friend">
-                {({ field }) => (
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="friend">{t("addFriend.form.field.friend")}</FormLabel>
-                    <Input id="friend" {...field} />
-                  </FormControl>
-                )}
-              </Field>
-            </Stack>
-            <Box w="100%" display="flex" justifyContent="flex-end">
-              <Button
-                _hover={{ boxShadow: "md" }}
-                _active={{ boxShadow: "lg" }}
-                colorScheme="blue"
-                marginTop={4}
-                loadingText={"Sharing"}
-                isLoading={props.isSubmitting}
-                justifyContent="flex-start"
-                type="submit"
-              >
-                {t("addFriend.form.submit")}
-              </Button>
-            </Box>
-          </Form>
-        )}
+        {(props) => {
+          return (
+            <Form>
+              <Stack>
+                <Field name="friend">
+                  {({ field }) => {
+                    return (
+                      <FormControl isRequired>
+                        <FormLabel htmlFor="friend">
+                          {t("addFriend.form.field.friend")}
+                        </FormLabel>
+                        <Input id="friend" {...field} />
+                      </FormControl>
+                    );
+                  }}
+                </Field>
+              </Stack>
+              <Box w="100%" display="flex" justifyContent="flex-end">
+                <Button
+                  _hover={{ boxShadow: "md" }}
+                  _active={{ boxShadow: "lg" }}
+                  colorScheme="blue"
+                  marginTop={4}
+                  loadingText={"Sharing"}
+                  isLoading={props.isSubmitting}
+                  justifyContent="flex-start"
+                  type="submit"
+                >
+                  {t("addFriend.form.submit")}
+                </Button>
+              </Box>
+            </Form>
+          );
+        }}
       </Formik>
     </Container>
   );
 };
 
-AddFriendForm.propTypes={
-  accounts:propTypes.array,
+AddFriendForm.propTypes = {
+  accounts: propTypes.array,
   contract: propTypes.object,
   getMemories: propTypes.func,
-  isSubmitting: propTypes.any,
-}
+  isSubmitting: propTypes.any
+};
 
 export default AddFriendForm;
