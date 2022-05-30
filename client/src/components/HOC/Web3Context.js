@@ -14,7 +14,7 @@ const Web3Provider = (props) =>{
   const getMemories = async () => {
     const { contract } = state;
     if(contract){
-      const response = await contract.methods.getMemory().call();
+      const response = await contract.methods.getMemory(state.accounts[0]).call();
       setState({ memoryList: response || []});
     }
   };
@@ -30,11 +30,15 @@ const Web3Provider = (props) =>{
         if(!deployedNetwork){
           throw new Error("Network Error");
         }
-        const instance = new web3.eth.Contract(
+        const contract = new web3.eth.Contract(
           MemoryStorageContract.abi,
           deployedNetwork && deployedNetwork.address
         );
-        setState({ web3, accounts, contract: instance });
+        const hasUser = await contract.methods.hasUser(accounts[0]).call()
+        if(!hasUser){
+          contract.methods.setUser(accounts[0]).call();
+        }
+        setState({ web3, accounts, contract });
         
       } catch (error) {
         setState({error: "Failed to load web3, accounts, or contract. Check console for details."})

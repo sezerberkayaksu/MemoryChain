@@ -5,6 +5,9 @@
   "menu.friends": "Arkadaşlar",
   "menu.addFriend": "Arkadaş Ekle",
 
+  "memoryList.error.emptyList": "Herhangi bir anınız bulunamadı",
+  "memoryList.error.addMemory": "Yeni Anı Ekle",
+
   "addMemory.form.info": "Paylaşmak istediğiniz anıyı yazınız lütfen.",
   "addMemory.form.field.friend": "Cüzdan Anahtarı",
   "addMemory.form.field.memory": "Anı",

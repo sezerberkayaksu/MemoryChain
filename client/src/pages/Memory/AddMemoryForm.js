@@ -18,8 +18,10 @@ const AddMemoryForm = ({ accounts, contract, getMemories }) => {
 
   const handleSubmit = async (values, actions) => {
     try {
+      console.log("ACCOUNTs",accounts[0]);
+      console.log("DENEM",values);
       await contract.methods
-        .addMemory(values.memory)
+        .addMemory(accounts[0], values.friend, values.memory)
         .send({ from: accounts[0] });
       actions.setSubmitting(false);
       getMemories();
