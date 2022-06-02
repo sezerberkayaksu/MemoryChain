@@ -7,13 +7,12 @@
 
   "memoryList.error.emptyList": "Herhangi bir anınız bulunamadı",
   "memoryList.error.addMemory": "Yeni Anı Ekle",
+  "memoryList.tabs.allMemories": "Tüm Anılar",
+  "memoryList.tabs.activeMemories": "Aktif Anılar",
+  "memoryList.tabs.passiveMemories": "Pasif Anılar",
 
   "addMemory.form.info": "Paylaşmak istediğiniz anıyı yazınız lütfen.",
-  "addMemory.form.field.friend": "Cüzdan Anahtarı",
+  "addMemory.form.field.walletID": "Cüzdan Anahtarı",
   "addMemory.form.field.memory": "Anı",
-  "addMemory.form.submit": "Anıyı Paylaş",
-
-  "friends.addFriend.title": "Arkadaş Ekle",
-  "addFriend.form.field.friend": "Cüzdan Anahtarı",
-  "addFriend.form.submit": "Arkadaş Ekle"
+  "addMemory.form.submit": "Anıyı Paylaş"
 }

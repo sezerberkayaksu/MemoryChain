@@ -12,17 +12,19 @@ import {
 import { Field, Form, Formik } from "formik";
 import propTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-const AddMemoryForm = ({ accounts, contract, getMemories }) => {
+const AddMemoryForm = ({ accounts, contract }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
     try {
       await contract.methods
-        .addMemory(accounts[0], values.friend, values.memory)
+        .addMemory(values.walletID, values.memory)
         .send({ from: accounts[0] });
       actions.setSubmitting(false);
-      getMemories();
+      navigate("/memory");
     } catch (error) {
       console.error(error);
     }
@@ -30,17 +32,17 @@ const AddMemoryForm = ({ accounts, contract, getMemories }) => {
 
   return (
     <Container maxW="md">
-      <Formik initialValues={{ memory: "" }} onSubmit={handleSubmit}>
+      <Formik initialValues={{ walletID: "" ,memory: "" }} onSubmit={handleSubmit}>
         {(props) => {
           return (
             <Form>
               <Stack>
-                <Field name="friend">
+                <Field name="walletID">
                   {({ field }) => {
                     return (
                       <FormControl isRequired>
-                        <FormLabel htmlFor="friend">
-                          {t("addMemory.form.field.friend")}
+                        <FormLabel htmlFor="walletID">
+                          {t("addMemory.form.field.walletID")}
                         </FormLabel>
                         <Input id="friend" {...field} />
                       </FormControl>

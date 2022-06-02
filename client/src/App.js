@@ -1,12 +1,12 @@
 import React from "react";
-import withWeb3Context from "./components/HOC/Web3Context";
+import withWeb3Context from "./components/Context/Web3Context";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {Error, Navbar} from "./components";
 import propTypes from "prop-types";
-import { MemoryList, AddMemoryForm, Welcome, FriendList, AddFriendForm } from "./pages"; 
+import { MemoryList, AddMemoryForm, Welcome } from "./pages"; 
 
-const App = ({ memoryList, getMemories, accounts, contract, error }) => {
+const App = ({ memoryList, getMemories, accounts, contract, loading, error }) => {
     if (error) {
       return <Error message={error} />;
     }
@@ -22,7 +22,7 @@ const App = ({ memoryList, getMemories, accounts, contract, error }) => {
           />
           <Route
             path="memory"
-            element={<MemoryList memoryList={memoryList || []} getMemories={getMemories}/>}
+            element={<MemoryList memoryList={memoryList || []} getMemories={getMemories} contextLoading={loading}/>}
           />
           <Route
             path="/memory/add"
@@ -31,24 +31,7 @@ const App = ({ memoryList, getMemories, accounts, contract, error }) => {
                 accounts={accounts}
                 contract={contract}
                 getMemories={getMemories}
-              />
-            }
-          />
-          <Route
-            path="/friends"
-            element={
-              <FriendList
-                memoryList={memoryList || []} getMemories={getMemories}
-              />
-            }
-          />
-          <Route
-            path="/friends/add"
-            element={
-              <AddFriendForm
-                accounts={accounts}
-                contract={contract}
-                getMemories={getMemories}
+                loading={loading}
               />
             }
           />
@@ -68,6 +51,7 @@ App.propTypes = {
   contract: propTypes.object,
   getMemories: propTypes.func,
   memoryList: propTypes.array,
+  loading: propTypes.bool,
   error: propTypes.string
 };
 

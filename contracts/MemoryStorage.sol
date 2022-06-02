@@ -4,13 +4,14 @@ pragma solidity >=0.4.21 <8.10.0;
 
 contract MemoryStorage {
   struct MemoryData {
+    uint256 ID;
     string text;
-    string friendID;
+    bool isActive;
   }
 
   struct User {
     string walletID;
-    string[] friends;
+    string chainID;
     MemoryData[] memories;
   }
 
@@ -35,13 +36,9 @@ contract MemoryStorage {
     return indexOf(userIds, _walletID);
   }
 
-  function addMemory(string memory _walletID, string memory _friendID, string memory _memory) public {
+  function addMemory(string memory _walletID, string memory _memory) public {
     User storage _user = users[_walletID];
-    bool hasFriend  = indexOf(_user.friends, _friendID);
-    if(!hasFriend){
-      _user.friends.push(_friendID);
-    }
-    MemoryData memory newMemory = MemoryData({text: _memory, friendID: _friendID});
+    MemoryData memory newMemory = MemoryData({ID: _user.memories.length, text: _memory, isActive: false});
     _user.memories.push(newMemory);
   }
 

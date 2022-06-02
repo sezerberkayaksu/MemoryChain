@@ -20,10 +20,6 @@ const ROUTES = {
   "/memory": {
     i18Key: "menu.memories",
     url: "/memory"
-  },
-  "/friends": {
-    i18Key: "menu.friends",
-    url: "/friends"
   }
 };
 
