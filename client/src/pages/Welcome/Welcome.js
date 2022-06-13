@@ -7,8 +7,12 @@ import {
   Button,
   Stack
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export const Welcome = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <>
       <Container maxW={"3xl"}>
@@ -21,15 +25,13 @@ export const Welcome = () => {
             fontWeight={600}
             fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
             lineHeight={"110%"}>
-            Make money from <br />
+            {t("welcome.title.first")}<br />
             <Text as={"span"} color={"blue.400"}>
-              your audience
+            {t("welcome.title.second")}
             </Text>
           </Heading>
           <Text color={"gray.500"}>
-            Monetize your content by charging your most loyal readers and reward
-            them loyalty points. Give back to your loyal readers by granting
-            them access to your pre-releases and sneak-peaks.
+          {t("welcome.text")}
           </Text>
           <Stack
             direction={"column"}
@@ -44,8 +46,10 @@ export const Welcome = () => {
               px={6}
               _hover={{
                 bg: "blue.500"
-              }}>
-              Get Started
+              }}
+              onClick={()=>{navigate("/memory/add");}}
+              >
+              {t("welcome.button")}
             </Button>
           </Stack>
         </Stack>

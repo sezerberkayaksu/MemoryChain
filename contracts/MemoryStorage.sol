@@ -6,7 +6,7 @@ contract MemoryStorage {
   struct MemoryData {
     uint256 ID;
     string text;
-    bool isActive;
+    int256 status;
   }
 
   struct User {
@@ -36,9 +36,14 @@ contract MemoryStorage {
     return indexOf(userIds, _walletID);
   }
 
+  function changeMemoryStatus(string memory _walletID, uint256 memoryIndex, int256 _status) public {
+    User storage _user = users[_walletID];
+    _user.memories[memoryIndex].status = _status;
+  }
+
   function addMemory(string memory _walletID, string memory _memory) public {
     User storage _user = users[_walletID];
-    MemoryData memory newMemory = MemoryData({ID: _user.memories.length, text: _memory, isActive: false});
+    MemoryData memory newMemory = MemoryData({ID: _user.memories.length, text: _memory, status: 0});
     _user.memories.push(newMemory);
   }
 

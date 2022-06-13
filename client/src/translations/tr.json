@@ -2,14 +2,20 @@
   "menu.home": "Anasayfa",
   "menu.memories": "Anılar",
   "menu.addMemory": "Anı Ekle",
-  "menu.friends": "Arkadaşlar",
-  "menu.addFriend": "Arkadaş Ekle",
 
-  "memoryList.error.emptyList": "Herhangi bir anınız bulunamadı",
+  "welcome.title.first": "Anılarınız güvenle paylaşın",
+  "welcome.title.second": "ve sonsuza kadar saklayın",
+  "welcome.text": "MemoryChain projesi sayesinde sadece cüzdan anahtarınızı kullanarak istediğiniz bir anıyı Etherum ağı üzerinde sonsuza kadar güvende saklayabilirsiniz.",
+  "welcome.button": "Hadi Başlayalım",
+
+  "memoryList.error.emptyList": "Herhangi bir anı bulunamadı",
   "memoryList.error.addMemory": "Yeni Anı Ekle",
-  "memoryList.tabs.allMemories": "Tüm Anılar",
   "memoryList.tabs.activeMemories": "Aktif Anılar",
-  "memoryList.tabs.passiveMemories": "Pasif Anılar",
+  "memoryList.tabs.hiddenMemories": "Gizlenmiş Anılar",
+  "memoryList.tabs.pendingMemories": "Onay Bekleyen Anılar",
+  "memoryList.toApply": "Onayla",
+  "memoryList.toHide": "Gizle",
+
 
   "addMemory.form.info": "Paylaşmak istediğiniz anıyı yazınız lütfen.",
   "addMemory.form.field.walletID": "Cüzdan Anahtarı",

@@ -2,27 +2,39 @@ import React from "react";
 import withWeb3Context from "./components/Context/Web3Context";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import {Error, Navbar} from "./components";
+import { Error, Navbar } from "./components";
 import propTypes from "prop-types";
-import { MemoryList, AddMemoryForm, Welcome } from "./pages"; 
+import { MemoryList, AddMemoryForm, Welcome } from "./pages";
 
-const App = ({ memoryList, getMemories, accounts, contract, loading, error }) => {
-    if (error) {
-      return <Error message={error} />;
-    }
-    
-    return (
-      <div className="app">
+const App = ({
+  memoryList,
+  getMemories,
+  accounts,
+  contract,
+  loading,
+  error
+}) => {
+  if (error) {
+    return <Error message={error} />;
+  }
+
+  return (
+    <div className="app">
       <BrowserRouter>
-        <Navbar/>
+        <Navbar />
         <Routes>
-          <Route
-            path="/"
-            element={<Welcome />}
-          />
+          <Route path="/" element={<Welcome />} />
           <Route
             path="memory"
-            element={<MemoryList memoryList={memoryList || []} getMemories={getMemories} contextLoading={loading}/>}
+            element={
+              <MemoryList
+                memoryList={memoryList || []}
+                getMemories={getMemories}
+                contextLoading={loading}
+                accounts={accounts}
+                contract={contract}
+              />
+            }
           />
           <Route
             path="/memory/add"
@@ -35,14 +47,11 @@ const App = ({ memoryList, getMemories, accounts, contract, loading, error }) =>
               />
             }
           />
-          <Route
-            path="*"
-            element={<Navigate to="/"/>}
-          />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
-      </div>
-    );
+    </div>
+  );
 };
 
 App.propTypes = {
