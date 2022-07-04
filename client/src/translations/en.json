@@ -1,3 +1,26 @@
 {
-  "home": "Home"
+  "avatar.click.title": "Copied to Clipboard",
+  "avatar.click.desc": "Current wallet address copied to clipboard",
+
+  "menu.home": "Homepage",
+  "menu.memories": "Memories",
+  "menu.addMemory": "Add Memory",
+
+  "welcome.title.first": "Share your memories with safety",
+  "welcome.title.second": "and store them forever",
+  "welcome.text": "Thanks to the MemoryChain project, you can keep any memory you want securely on the Etherum network, using only your wallet key.",
+  "welcome.button": "Let's get started",
+
+  "memoryList.error.emptyList": "There is no memory found",
+  "memoryList.error.addMemory": "Add New Memory",
+  "memoryList.tabs.activeMemories": "Active Memories",
+  "memoryList.tabs.hiddenMemories": "Hidden Memories",
+  "memoryList.tabs.pendingMemories": "Pending Memories",
+  "memoryList.toApply": "Approve",
+  "memoryList.toHide": "Hide",
+
+  "addMemory.form.info": "Write the memory that you want to share.",
+  "addMemory.form.field.walletID": "Wallet Address",
+  "addMemory.form.field.memory": "Memory",
+  "addMemory.form.submit": "Share Memory"
 }

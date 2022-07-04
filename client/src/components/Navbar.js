@@ -6,17 +6,19 @@ import {
   HStack,
   IconButton,
   Button,
-  useDisclosure,
-  useColorModeValue,
   Stack,
   Link as ChakraLink,
   Heading,
-  useToast
+  Select,
+  useToast,
+  useDisclosure,
+  useColorModeValue
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
+import { LANGUAGES } from "../translations/LanguageProvider";
 
 const ROUTES = {
   "/memory": {
@@ -56,7 +58,7 @@ const Links = ({ t, currentPath }) => {
 const NavBar = ({ accounts }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { pathname: currentPath } = useLocation();
   const account = accounts ? accounts[0] : "";
@@ -70,6 +72,10 @@ const NavBar = ({ accounts }) => {
       status: "info",
       duration: 1000
     });
+  };
+
+  const handleLanguageChange = (e) => {
+    i18n.changeLanguage(e.target.value);
   };
 
   return (
@@ -109,6 +115,23 @@ const NavBar = ({ accounts }) => {
             >
               {t("menu.addMemory")}
             </Button>
+            <Stack mr={4}>
+              <Select
+                size={"sm"}
+                onChange={handleLanguageChange}
+                borderColor={"blue.300"}
+                borderRadius={4}
+              >
+                {LANGUAGES.map((language) => {
+                  return (
+                    <option key={language} value={language}>
+                      {language.toUpperCase()}
+                    </option>
+                  );
+                })}
+              </Select>
+            </Stack>
+
             <Stack onClick={handleAvatarClick}>
               <Avatar
                 as={Jazzicon}
