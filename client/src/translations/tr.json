@@ -1,4 +1,7 @@
 {
+  "avatar.click.title": "Adres Kopyalandı",
+  "avatar.click.desc": "Mevcut cüzdan adresi panoya kopyalanmıştır",
+
   "menu.home": "Anasayfa",
   "menu.memories": "Anılar",
   "menu.addMemory": "Anı Ekle",
@@ -15,7 +18,6 @@
   "memoryList.tabs.pendingMemories": "Onay Bekleyen Anılar",
   "memoryList.toApply": "Onayla",
   "memoryList.toHide": "Gizle",
-
 
   "addMemory.form.info": "Paylaşmak istediğiniz anıyı yazınız lütfen.",
   "addMemory.form.field.walletID": "Cüzdan Anahtarı",

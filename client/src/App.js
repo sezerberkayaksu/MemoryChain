@@ -21,7 +21,7 @@ const App = ({
   return (
     <div className="app">
       <BrowserRouter>
-        <Navbar />
+        <Navbar accounts={accounts} />
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route
