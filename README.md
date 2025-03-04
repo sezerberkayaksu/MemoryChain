@@ -1,6 +1,6 @@
 # MemoryChain
 
-MemoryChain is a project wich ı started to learn web3 technologies and work on eth blockchain network
+MemoryChain is a project which ı started to learn web3 technologies and work on eth blockchain network
 
 ## Getting Started
 
